@@ -15,7 +15,7 @@ public class SeguroDAO {
 	
 	public Connection getConnection() throws SQLException {
 	    try {
-	        Class.forName("com.mysql.cj.jdbc.Driver");  // fuerza a cargar el driver
+	        Class.forName("com.mysql.jdbc.Driver");  // fuerza a cargar el driver
 	    } catch (ClassNotFoundException e) {
 	        e.printStackTrace();
 	    }
