@@ -1,6 +1,7 @@
 package dominio;
 
-public class Seguros {
+public class Seguro {
+
 	
 	private Integer idSeguro;
 	private String descripcion;
@@ -8,12 +9,12 @@ public class Seguros {
 	private double costoContratacion;
 	private double costoAsegurado;
 	
-	public Seguros() {
+	public Seguro() {
 		
 	}
 	
 	
-	public Seguros(Integer idSeguro, String descripcion, Integer idTipo, double costoContratacion,
+	public Seguro(Integer idSeguro, String descripcion, Integer idTipo, double costoContratacion,
 			double costoAsegurado) {
 		super();
 		this.idSeguro = idSeguro;
@@ -54,6 +55,4 @@ public class Seguros {
 		this.costoAsegurado = costoAsegurado;
 	}
 	
-	
-
 }
