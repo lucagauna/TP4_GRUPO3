@@ -17,14 +17,14 @@ import dominio.TipoSeguro;
 /**
  * Servlet implementation class svAgregarSeguros
  */
-@WebServlet("/svAgregarSeguros")
-public class svAgregarSeguros extends HttpServlet {
+@WebServlet("/svListarTiposSeguro")
+public class svListarTiposSeguro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	SeguroDAO segurosbd =  new SeguroDAO();  
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public svAgregarSeguros() {
+    public svListarTiposSeguro() {
         super();
         // TODO Auto-generated constructor stub
     }
