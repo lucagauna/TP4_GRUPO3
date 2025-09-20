@@ -13,7 +13,7 @@
 <a href="AgregarSeguro.jsp">Agregar Seguro</a> 
 <a href="ListarSeguros.jsp">Listar Seguros</a>
 
-<form method="get" action="servletSeguros">
+<form method="get" action=svListarTiposSeguro>
     Descripción: <input type="text" name="txtDescripcion"> <br>
 
     <%
@@ -41,7 +41,6 @@
 
     <input type="submit" value="Aceptar" name="btnAceptar">
 </form>
-<input type="submit" value="Aceptar" name="btnAceptar">
 
 </body>
 </html>

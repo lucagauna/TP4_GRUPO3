@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dominio.SeguroDAO;
-import dominio.TipoSeguro;
+import dominio.Seguro;
 
 /**
- * Servlet implementation class svAgregarSeguros
+ * Servlet implementation class svListarSeguros
  */
-@WebServlet("/svListarTiposSeguro")
-public class svListarTiposSeguro extends HttpServlet {
+@WebServlet("/svListarSeguros")
+public class svListarSeguros extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	SeguroDAO segurosbd =  new SeguroDAO();  
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public svListarTiposSeguro() {
+    public svListarSeguros() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,19 +32,21 @@ public class svListarTiposSeguro extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 
-		 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		 try {
-			ArrayList<TipoSeguro> tipos = segurosbd.cargarDdlSeguros();
-			request.setAttribute("tipoSeguros", tipos);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AgregarSeguro.jsp");
+			ArrayList<Seguro> s = segurosbd.DescSeguros();
+			request.setAttribute("Seguros", s);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ListarSeguros.jsp");
 	        rd.forward(request, response);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	/**
@@ -54,7 +56,5 @@ public class svListarTiposSeguro extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
-	
 
 }
