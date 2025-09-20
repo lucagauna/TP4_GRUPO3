@@ -41,6 +41,7 @@
 
     <input type="submit" value="Aceptar" name="btnAceptar">
 </form>
+<input type="submit" value="Aceptar" name="btnAceptar">
 
 </body>
 </html>

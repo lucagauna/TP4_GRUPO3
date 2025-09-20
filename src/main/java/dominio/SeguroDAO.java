@@ -78,7 +78,6 @@ public class SeguroDAO {
 	            }
 					
 					
-				
 			System.out.println("Listado cargado correctamente");
 			
 			
