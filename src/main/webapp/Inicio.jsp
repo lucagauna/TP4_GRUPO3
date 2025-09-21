@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Inicio</title>
 </head>
 <body>
 <a href="Inicio.jsp">Inicio </a>   
-<a href="AgregarSeguro.jsp">Agregar Seguro</a> 
-<a href="ListarSeguros.jsp">Listar Seguros</a>
+<a href="svListarTiposSeguro?parametro=Agregar">Agregar Seguro</a> 
+<a href="svListarTiposSeguro?parametro=Listar">Listar Seguros</a>
 
 <h1>Soy la página Inicio</h1>
 </body>

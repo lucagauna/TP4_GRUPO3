@@ -38,10 +38,7 @@ public class SeguroDAO {
 					st.setDouble(3,seguro.getCostoContratacion());
 					st.setDouble(4,seguro.getCostoAsegurado());
 					
-					filas = st.executeUpdate();
-					
-			System.out.println("Seguro agregado correctamente." +"Filas agregadas: " + filas);
-			
+					filas = st.executeUpdate();		
 			
 		}
 		catch(Exception e) {
@@ -70,73 +67,42 @@ public class SeguroDAO {
 	               TipoSeguro ts = new TipoSeguro();
 	                ts.setIdTipo(rs.getInt("idTipo"));
 	                ts.setDescripcion(rs.getString("descripcion"));
-	                
-
 	                ltiposeguros.add(ts);
-	                
-	              
 	            }
-					
-					
-			System.out.println("Listado cargado correctamente");
-			
-			
 		}
-		
 		return ltiposeguros;
 	}
 	
-	public ArrayList<Seguro> DescSeguros() throws SQLException{
-		
-		String query = "SELECT * FROM seguros ";
-		 ArrayList<Seguro> seguros = new ArrayList<>();
-		try (Connection cn =  getConnection();
-				PreparedStatement st = cn.prepareStatement(query)){
-			ResultSet rs = st.executeQuery();
-			  while (rs.next()) {
-	               Seguro S = new Seguro();
-	                S.setIdSeguro(rs.getInt("idSeguro"));
-	                S.setDescripcion(rs.getString("descripcion"));
-	                S.setIdTipo(rs.getInt("idTipo"));
-	                S.setCostoContratacion(rs.getDouble("costoContratacion"));
-	                S.setCostoAsegurado(rs.getDouble("costoAsegurado"));
-
-	                seguros.add(S);
-	                
-	              
-	            }
-					
-					
-			System.out.println("Listado cargado correctamente");
-			
-			
-		}
-		
-		return seguros;
-	}
-	
-	public ArrayList<Seguro> listarSegurosPorTipo(int idTipo) throws SQLException {
-	    String query = "SELECT * FROM seguros WHERE idTipo = ?";
+	public ArrayList<Seguro> getSeguros(int id) throws SQLException {
 	    ArrayList<Seguro> seguros = new ArrayList<>();
+	    String query;
+	    if (id == 0) {
+	        query = "SELECT * FROM seguros";
+	    } else {
+	        query = "SELECT * FROM seguros WHERE idTipo = ?";
+	    }
+
 	    try (Connection cn = getConnection();
 	         PreparedStatement st = cn.prepareStatement(query)) {
-	        
-	        st.setInt(1, idTipo);
-	        ResultSet rs = st.executeQuery();
-	        
-	        while (rs.next()) {
-	            Seguro s = new Seguro();
-	            s.setIdSeguro(rs.getInt("idSeguro"));
-	            s.setDescripcion(rs.getString("descripcion"));
-	            s.setIdTipo(rs.getInt("idTipo"));
-	            s.setCostoContratacion(rs.getDouble("costoContratacion"));
-	            s.setCostoAsegurado(rs.getDouble("costoAsegurado"));
-	            seguros.add(s);
+	        if (id > 0) {
+	            st.setInt(1, id);
+	        }
+
+	        try (ResultSet rs = st.executeQuery()) {
+	            while (rs.next()) {
+	                Seguro s = new Seguro();
+	                s.setIdSeguro(rs.getInt("idSeguro"));
+	                s.setDescripcion(rs.getString("descripcion"));
+	                s.setIdTipo(rs.getInt("idTipo"));
+	                s.setCostoContratacion(rs.getDouble("costoContratacion"));
+	                s.setCostoAsegurado(rs.getDouble("costoAsegurado"));
+	                seguros.add(s);
+	            }
 	        }
 	    }
+
 	    return seguros;
 	}
 
-		
 }
 

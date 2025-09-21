@@ -14,44 +14,39 @@ import javax.servlet.http.HttpServletResponse;
 import dominio.SeguroDAO;
 import dominio.TipoSeguro;
 
-/**
- * Servlet implementation class svAgregarSeguros
- */
 @WebServlet("/svListarTiposSeguro")
 public class svListarTiposSeguro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	SeguroDAO segurosbd =  new SeguroDAO();  
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	SeguroDAO segurosbd =  new SeguroDAO();
     public svListarTiposSeguro() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 
-		 
 		 try {
 			ArrayList<TipoSeguro> tipos = segurosbd.cargarDdlSeguros();
 			request.setAttribute("tipoSeguros", tipos);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AgregarSeguro.jsp");
+			RequestDispatcher rd;
+			String parametro = request.getParameter("parametro");
+			switch(parametro) {
+				case "Agregar":
+					rd = request.getRequestDispatcher("svListarSeguros");
+					break;
+				case "Listar":
+					rd = request.getRequestDispatcher("ListarSeguros.jsp");
+					break;
+				case null:
+					rd = request.getRequestDispatcher("ListarSeguros.jsp");
+					break;
+				default:
+					rd = null;				
+			}
 	        rd.forward(request, response);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

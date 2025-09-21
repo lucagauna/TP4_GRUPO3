@@ -10,9 +10,9 @@
 <title>Listar Seguros</title>
 </head>
 <body>
-<a href="Inicio.jsp">Inicio </a>
-<a href="AgregarSeguro.jsp">Agregar Seguro</a>
-<a href="ListarSeguros.jsp">Listar Seguros</a>
+<a href="Inicio.jsp">Inicio </a>   
+<a href="svListarTiposSeguro?parametro=Agregar">Agregar Seguro</a> 
+<a href="svListarTiposSeguro?parametro=Listar">Listar Seguros</a>
 
 <h1>"Tipo de seguros en la base de datos"</h1>
 
@@ -22,16 +22,27 @@ Busqueda por tipo de seguros:
 
     <select name="tipoSeguro">
     <%
-    	ArrayList<TipoSeguro> tipos = (ArrayList<TipoSeguro>) request.getAttribute("tipoSeguros");
+        ArrayList<TipoSeguro> tipos = (ArrayList<TipoSeguro>) request.getAttribute("tipoSeguros");
+        int seleccionado = 0;
+        if (request.getParameter("tipoSeguro") != null) {
+            seleccionado = Integer.parseInt(request.getParameter("tipoSeguro").toString());
+        }
         if (tipos != null) {
+    %>
+        <option value="0">Seleccionar</option>
+    <%
             for (TipoSeguro t : tipos) {
     %>
-                <option value="<%= t.getIdTipo() %>"><%= t.getDescripcion() %></option>
+                <option value="<%= t.getIdTipo() %>"
+                    <%= (t.getIdTipo() == seleccionado) ? "selected" : "" %>>
+                    <%= t.getDescripcion() %>
+                </option>
     <%
             }
         }
     %>
-    </select>
+</select>
+
     
     <input type="submit" value="Filtrar" name="Filtrado">
     

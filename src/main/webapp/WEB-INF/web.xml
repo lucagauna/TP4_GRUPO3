@@ -1,0 +1,5 @@
+<webapp>
+    <welcome-file-list>
+        <welcome-file>Inicio.jsp</welcome-file>
+    </welcome-file-list>
+</webapp>
