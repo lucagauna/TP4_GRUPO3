@@ -114,5 +114,29 @@ public class SeguroDAO {
 		
 		return seguros;
 	}
+	
+	public ArrayList<Seguro> listarSegurosPorTipo(int idTipo) throws SQLException {
+	    String query = "SELECT * FROM seguros WHERE idTipo = ?";
+	    ArrayList<Seguro> seguros = new ArrayList<>();
+	    try (Connection cn = getConnection();
+	         PreparedStatement st = cn.prepareStatement(query)) {
+	        
+	        st.setInt(1, idTipo);
+	        ResultSet rs = st.executeQuery();
+	        
+	        while (rs.next()) {
+	            Seguro s = new Seguro();
+	            s.setIdSeguro(rs.getInt("idSeguro"));
+	            s.setDescripcion(rs.getString("descripcion"));
+	            s.setIdTipo(rs.getInt("idTipo"));
+	            s.setCostoContratacion(rs.getDouble("costoContratacion"));
+	            s.setCostoAsegurado(rs.getDouble("costoAsegurado"));
+	            seguros.add(s);
+	        }
+	    }
+	    return seguros;
+	}
+
 		
 }
+

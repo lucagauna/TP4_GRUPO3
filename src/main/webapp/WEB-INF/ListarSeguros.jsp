@@ -14,26 +14,15 @@
 <a href="AgregarSeguro.jsp">Agregar Seguro</a>
 <a href="ListarSeguros.jsp">Listar Seguros</a>
 
-<form method="get" action="svListarSeguros">
-
 <h1>"Tipo de seguros en la base de datos"</h1>
+
+<form method="get" action="svListarSeguros">
 
 Busqueda por tipo de seguros: 
 
-    <%
-    ArrayList<Seguro> seguros = (ArrayList<Seguro>) request.getAttribute("Seguros");
-    %>
-
-	<form method="get" action=svListarTiposSeguro>
-    <%
-    	
-    ArrayList<TipoSeguro> tipos = (ArrayList<TipoSeguro>) request.getAttribute("tipoSeguros");
-
-        
-    %>
-
     <select name="tipoSeguro">
     <%
+    	ArrayList<TipoSeguro> tipos = (ArrayList<TipoSeguro>) request.getAttribute("tipoSeguros");
         if (tipos != null) {
             for (TipoSeguro t : tipos) {
     %>
@@ -43,8 +32,10 @@ Busqueda por tipo de seguros:
         }
     %>
     </select>
-    </form>
+    
     <input type="submit" value="Filtrar" name="Filtrado">
+    
+    </form>
     
     <br>
     <br>
@@ -58,7 +49,9 @@ Busqueda por tipo de seguros:
     <th> Costo Contratación</th>
     <th>Costo Máximo Asegurado</th> 
     </tr>
-    <%if (seguros != null) {
+    <%
+    ArrayList<Seguro> seguros = (ArrayList<Seguro>) request.getAttribute("Seguros");
+    if (seguros != null) {
         for (Seguro s : seguros) {
     %>
     <tr>
@@ -70,10 +63,9 @@ Busqueda por tipo de seguros:
     </tr>
     <%
         }
-        }
-        %>
-    		
-</form>
+    }
+    %>
+</table>
 
 </body>
 </html>
