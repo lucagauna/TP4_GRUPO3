@@ -29,7 +29,9 @@ public class svListarTiposSeguro extends HttpServlet {
 			String parametro = request.getParameter("parametro");
 			switch(parametro) {
 				case "Agregar":
-					rd = request.getRequestDispatcher("svListarSeguros");
+				    int nuevaID = segurosbd.obtenerUltimoIdSeguro() + 1;
+				    request.setAttribute("NuevaID", nuevaID);
+					rd = request.getRequestDispatcher("AgregarSeguro.jsp");
 					break;
 				case "Listar":
 					rd = request.getRequestDispatcher("ListarSeguros.jsp");

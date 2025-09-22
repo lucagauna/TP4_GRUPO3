@@ -13,11 +13,11 @@
 <a href="svListarTiposSeguro?parametro=Agregar&tipoSeguro=0">Agregar Seguro</a> 
 <a href="svListarTiposSeguro?parametro=Listar">Listar Seguros</a>
 
-<form method="get" action="svListarTiposSeguro">
-	ID: <%= request.getAttribute("NuevaID") %> <br>
+<form method="post" action="svAgregarSeguro">
+    ID: <%= request.getAttribute("NuevaID") %> <br>
     Descripción: <input type="text" name="txtDescripcion"> <br>
 
-    <select name="tipoSeguro">
+    Tipo de Seguro: <select name="tipoSeguro">
     <%
     	ArrayList<TipoSeguro> tipos = (ArrayList<TipoSeguro>) request.getAttribute("tipoSeguros");
         if (tipos != null) {

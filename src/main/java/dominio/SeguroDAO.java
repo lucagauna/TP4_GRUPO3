@@ -26,7 +26,7 @@ public class SeguroDAO {
 	    );
 	}
 	
-		
+
 	public int AgregarSeguro (Seguro seguro) {
 		int filas = 0;
 		String query = "INSERT INTO seguros (descripcion,idTipo,costoContratacion,costoAsegurado) VALUES (?,?,?,?)";
@@ -103,6 +103,22 @@ public class SeguroDAO {
 
 	    return seguros;
 	}
+	
+	
+	public int obtenerUltimoIdSeguro() throws SQLException {
+	    int ultimoId = 0;
+	    String query = "SELECT MAX(idSeguro) AS maxId FROM seguros";
+	    
+	    try (Connection cn = getConnection();
+	         PreparedStatement st = cn.prepareStatement(query)) {
+	        ResultSet rs = st.executeQuery();
+	        if (rs.next()) {
+	            ultimoId = rs.getInt("maxId");
+	        }
+	    }
+	    return ultimoId;
+	}
+
 
 }
 
