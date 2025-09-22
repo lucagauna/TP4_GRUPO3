@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dominio.SeguroDAO;
 import dominio.Seguro;
+import dominio.TipoSeguro;
 
 @WebServlet("/svListarSeguros")
 public class svListarSeguros extends HttpServlet {
@@ -33,6 +34,8 @@ public class svListarSeguros extends HttpServlet {
 			}
 			ArrayList<Seguro> s = segurosbd.getSeguros(id);
 			request.setAttribute("Seguros", s);
+			ArrayList<TipoSeguro> tipos = segurosbd.cargarDdlSeguros();
+			request.setAttribute("tipoSeguros", tipos);
 			String parametro = request.getParameter("parametro");
 			RequestDispatcher rd;
 			switch(parametro) {

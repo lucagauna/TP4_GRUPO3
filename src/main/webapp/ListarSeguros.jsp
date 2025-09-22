@@ -68,7 +68,16 @@ Busqueda por tipo de seguros:
     <tr>
 	    <td><%= s.getIdSeguro() %> </td>
 	    <td><%= s.getDescripcion() %></td>
-	    <td><%= s.getIdTipo() %></td>
+	    <td>
+		<%
+    		for (TipoSeguro t : tipos) {
+        		if (t.getIdTipo().equals(s.getIdTipo())) {
+            		out.print(t.getDescripcion());
+            		break;
+        		}
+    		}
+		%>
+		</td>
 	    <td><%= s.getCostoContratacion() %></td> 
 	    <td><%= s.getCostoAsegurado() %></td> 
     </tr>
